@@ -25,7 +25,7 @@ export const postRegister = async (req, res) => {
             // user details which we would like to encrypt in JWT token
             {
                 userID: user._id,
-                email,
+                email: user.email,
             },
             //secret
             process.env.TOKEN_KEY,
@@ -38,7 +38,7 @@ export const postRegister = async (req, res) => {
         //  send success response back to the user with data of registered user and JWT
         return res.status(201).json({
             userDetails: {
-                email,
+                email: user.email,
                 username,
                 token,
             },
