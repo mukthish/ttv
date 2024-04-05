@@ -29,8 +29,8 @@ export const postLogin = async (req, res) => {
             return res.status(200).json({
                 userDetails: {
                     email: user.email,
-                    token,
                     username: user.username,
+                    token,
                 }
             });
         }

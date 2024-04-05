@@ -6,7 +6,9 @@ export const postRegister = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        const userExists = await User.exists({ email });
+        const userExists = await User.exists({ 
+            email: email.toLowerCase(),
+        });
 
         if (userExists) {
             return res.status(409).send("E-mail already in use.");
@@ -16,7 +18,7 @@ export const postRegister = async (req, res) => {
 
         const user = await User.create({
             username,
-            email :email.toLowerCase(),
+            email: email.toLowerCase(),
             password: encryptedPassword,
         });
 
