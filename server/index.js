@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import authRoutes from "./src/routes/authRoutes.js";
+import channelsRoutes from "./src/routes/channelsRoutes.js";
+import settingsRoutes from "./src/routes/settingsRoutes.js";
 
 dotenv.config();
 
@@ -17,21 +19,23 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  return res.send("Hello here is your server");
+    return res.send("Hello here is your server");
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/channels", channelsRoutes);
+app.use("/api/settings", settingsRoutes);
 
 const server = http.createServer(app);
 
 mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    server.listen(PORT, () => {
-      console.log("Server is listening on " + PORT);
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log("Server is listening on " + PORT);
+        });
+    })
+    .catch((err) => {
+        console.log("Database connection failed. Server not started.");
+        console.log(err);
     });
-  })
-  .catch((err) => {
-    console.log("Database connection failed. Server not started.");
-    console.log(err);
-  });
