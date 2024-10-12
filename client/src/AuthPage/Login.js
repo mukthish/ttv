@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Logo } from "./Logo";
-import { AuthInput } from "./AuthInput";
+import { Input } from "../shared/components";
 import {
     emailValidationMessage,
     passwordValidationMessage,
@@ -72,7 +72,7 @@ export const Login = ({ switchAuthHandler }) => {
         <div className="login-container">
             <Logo text={"Log in to TTV"} />
             <form className="auth-form">
-                <AuthInput
+                <Input
                     field="email"
                     label="Email"
                     value={formState.email.value}
@@ -82,7 +82,7 @@ export const Login = ({ switchAuthHandler }) => {
                     showErrorMessage={formState.email.showError}
                     validationMessage={emailValidationMessage}
                 />
-                <AuthInput
+                <Input
                     field="password"
                     label="Password"
                     value={formState.password.value}

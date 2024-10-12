@@ -28,6 +28,8 @@ app.use("/api/settings", settingsRoutes);
 
 const server = http.createServer(app);
 
+registerSocketServer(server);
+
 mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
